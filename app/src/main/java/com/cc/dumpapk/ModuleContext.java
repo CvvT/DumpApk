@@ -100,9 +100,9 @@ public class ModuleContext {
                 hook_application_class = this.getBaseClassLoader().loadClass(appClassName);
                 if (hook_application_class != null) {
                     //for tecent protect
-//                    Method hookOncreateMethod = hook_application_class.getDeclaredMethod("onCreate", new Class[] {});
-//                    if (hookOncreateMethod != null)
-//                        XposedHelpers.findAndHookMethod(hook_application_class, "onCreate", new ApplicationOnCreateHook());
+                    Method hookOncreateMethod = hook_application_class.getDeclaredMethod("onCreate", new Class[] {});
+                    if (hookOncreateMethod != null)
+                        XposedHelpers.findAndHookMethod(hook_application_class, "onCreate", new ApplicationOnCreateHook());
                     // for ali protect
                     Method hookMethod = hook_application_class.getDeclaredMethod("attachBaseContext", Context.class);
                     if (hookMethod != null)
