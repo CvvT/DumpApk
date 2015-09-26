@@ -141,10 +141,10 @@ void saveHeaderAndData(DexFile *dexfile) {
     strcpy(tmp, dumppath);
     strcat(tmp, "header");
     FILE *fp = fopen(tmp, "wb+");
-//    u4 length = dexfile->pHeader->classDefsOff + sizeof(DexOptHeader);
-//    fwrite(dexfile->pOptHeader, 1, length, fp);
-    u4 length = dexfile->pHeader->classDefsOff;
-    fwrite(dexfile->baseAddr, 1 , length, fp);
+    u4 length = dexfile->pHeader->classDefsOff + sizeof(DexOptHeader);
+    fwrite(dexfile->pOptHeader, 1, length, fp);
+//    u4 length = dexfile->pHeader->classDefsOff;
+//    fwrite(dexfile->baseAddr, 1 , length, fp);
     fflush(fp);
     fclose(fp);
 
@@ -704,18 +704,18 @@ void dump(JNIEnv *env, jobject obj, jint cookie, jobject loader) {
     }
 
     //dump optdex
-//    fwrite(dex->baseAddr - sizeof(DexOptHeader) + dex->pOptHeader->depsOffset, 1,
-//           dex->pOptHeader->optOffset - dex->pOptHeader->depsOffset + dex->pOptHeader->optLength, fp1);
-//    LOGE("%d, %d, %d", dex->pOptHeader->optOffset, dex->pOptHeader->depsOffset, dex->pOptHeader->optLength);
-//    fflush(fp1);
+    fwrite(dex->baseAddr - sizeof(DexOptHeader) + dex->pOptHeader->depsOffset, 1,
+           dex->pOptHeader->optOffset - dex->pOptHeader->depsOffset + dex->pOptHeader->optLength, fp1);
+    LOGE("%d, %d, %d", dex->pOptHeader->optOffset, dex->pOptHeader->depsOffset, dex->pOptHeader->optLength);
+    fflush(fp1);
     fclose(fp1);
     fclose(fp);
 
-//    LOGE("start fix optHeader");
-//    DexOptHeader* head = (DexOptHeader*)dex->pOptHeader;
-//    head->optOffset = pointer + (head->optOffset - head->depsOffset);
-//    head->depsOffset = pointer;
-//    LOGE("end fix optHeader, %x, %x", pointer, head->optOffset);
+    LOGE("start fix optHeader");
+    DexOptHeader* head = (DexOptHeader*)dex->pOptHeader;
+    head->optOffset = pointer + (head->optOffset - head->depsOffset) + sizeof(DexOptHeader);
+    head->depsOffset = pointer + sizeof(DexOptHeader);
+    LOGE("end fix optHeader, %x, %x", pointer, head->optOffset);
     saveHeaderAndData(dex);
     strcpy(path, dumppath);
     strcat(path, "whole.dex");

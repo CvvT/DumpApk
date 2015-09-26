@@ -1,0 +1,7 @@
+su
+mount -o remount,rw /dev/null /system
+chmod 777 /system
+dd if=/data/local/tmp/libdump.so of=/system/lib/libdump.so
+chmod 644 /system/lib/libdump.so
+reboot
+

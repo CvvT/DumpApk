@@ -1,0 +1,10 @@
+su
+cd data/data/com.cc.test/
+rm header
+rm classdef
+rm data
+rm extra
+rm whole.dex
+exit
+exit
+

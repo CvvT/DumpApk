@@ -1,0 +1,7 @@
+su
+dd if=/data/data/com.cc.test/whole.dex of=/data/local/tmp/whole.dex
+cd data/local/tmp/
+chmod 744 whole.dex
+exit
+exit
+
