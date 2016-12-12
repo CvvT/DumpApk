@@ -1,4 +1,5 @@
 # DumpApk
+* Xposed Module to automatically unpack Apk
 * Intuition: reside in the app's context to collect info from Dalvik Data Structure.
 
 ----------update 2015.10.19--------------------<br>
