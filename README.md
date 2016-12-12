@@ -1,5 +1,5 @@
 # DumpApk
-Intuition: reside in the app's context to collect info from Dalvik Data Structure.
+* Intuition: reside in the app's context to collect info from Dalvik Data Structure.
 
 ----------update 2015.10.19--------------------<br>
 分享一份自己做的ppt，仅供学习交流，侵删<br>
