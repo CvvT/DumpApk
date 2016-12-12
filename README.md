@@ -1,3 +1,6 @@
+* DumpApk
+Intuition: reside in the app's context to collect info from Dalvik Data Structure.
+
 ----------update 2015.10.19--------------------<br>
 分享一份自己做的ppt，仅供学习交流，侵删<br>
 PS: 最近在整理一些资料，结合自己写的这些工具以及自己所学知识，出一份关于脱壳的的ppt，大家尽情期待我会传到这上来的。<br>
